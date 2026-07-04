@@ -1,0 +1,334 @@
+# 🎯 GATE Mock Test Generation & Analytics Platform
+
+A full-stack web application that dynamically generates balanced GATE Computer Science (CSE) and GATE Data Science & Artificial Intelligence (DA) mock tests using a rule-based generation engine, evaluates student performance, and provides topic-wise analytics.
+Instead of serving fixed mock papers, the platform assembles each test by selecting questions from a structured question bank while following predefined blueprint and difficulty rules to closely resemble the actual GATE examination.
+
+---
+
+## 📌 Features
+
+### 📝 Intelligent Mock Test Generation
+- Dynamic mock generation based on GATE blueprint
+- Balanced difficulty distribution (Easy / Medium / Hard)
+- Topic-wise question allocation
+- Randomized question selection
+- Support for MCQ, MSQ and NAT questions
+- Timed mocktest
+
+### 📚 Question Management
+- Structured question bank
+- Topic-wise organization
+- Difficulty tagging
+- Previous Year Questions (PYQs)
+- Curated practice questions
+
+### 📊 Performance Analytics
+- Automatic evaluation
+- Score calculation
+- Accuracy Percentage
+- Attempt history
+
+### 👤 Users Features
+- User authentication
+- Generate mock tests
+- Attempt exams
+- View results
+- Performance dashboard
+
+---
+
+# 🏗 Project Architecture
+
+```
+Frontend
+    │
+    ▼
+REST API
+    │
+    ▼
+Controllers
+    │
+    ▼
+Services
+    │
+    ▼
+Generation Engine
+    │
+    ▼
+Database
+```
+
+---
+
+# ⚙ Mock Generation Pipeline
+
+```
+Exam Blueprint
+        │
+        ▼
+Topic Selection
+        │
+        ▼
+Difficulty Allocation
+        │
+        ▼
+Question Selection
+        │
+        ▼
+Paper Assembly
+        │
+        ▼
+Validation
+        │
+        ▼
+Generated Mock Test
+```
+
+The generation engine ensures:
+
+- Proper topic distribution
+- Balanced difficulty
+- No duplicate questions
+- Exam-like structure
+- Rule-based paper assembly
+
+---
+
+# 📂 Project Structure
+
+```
+Frontend (React)
+Backend (FastAPI)
+Data Layer (Database + Knowledge Base + Question Bank)
+
+Architecture Notes:-
+Frontend is separated into API, pages, and reusable components for maintainability.
+Backend follows a modular structure separating models, schemas, and utility logic.
+Data is stored separately as a question bank and knowledge base for flexibility in mock generation.
+
+---
+
+# 🗄 Database Design
+
+Main entities:
+
+- User
+- Subject
+- Topic
+- Subtopic
+- Concept
+- Question
+- QuestionOption
+- MockTest
+- MockQuestion
+- StudentAttempt
+- AttemptAnswer
+
+The database is designed to support:
+
+- Multiple mock tests
+- Multiple attempts
+- Future scalability
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React.js
+- HTML
+- CSS
+- JavaScript
+
+## Backend
+
+- Python
+- FastAPI
+
+## Database
+
+- PostgreSQL
+- SQLAlchemy
+
+## Tools
+
+- Git
+- GitHub
+- Postman
+
+---
+
+# 🚀 Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/yourusername/gate-mock-platform.git
+```
+
+```bash
+cd gate-mock-platform
+```
+
+---
+
+## Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+Activate:
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Linux/Mac
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Configure Environment
+
+Create a `.env` file.
+
+Example:
+
+```env
+DATABASE_URL=postgresql://username:password@localhost:5432/gate_exam
+```
+
+---
+
+## Run Backend
+
+```bash
+uvicorn app.main:app --reload
+```
+
+---
+
+## Run Frontend
+
+```bash
+npm install
+```
+
+```bash
+npm start
+```
+
+# 📖 Application Flow
+
+Register
+      │
+      ▼
+Login
+      │
+      ▼
+Dashboard
+      │
+      ▼
+Select Exam
+      │
+      ▼
+Generate Mock
+      │
+      ▼
+Fetch Questions
+      │
+      ▼
+Start Attempt
+      │
+      ▼
+Auto Save Answers
+      │
+      ▼
+Submit Test
+      │
+      ▼
+Result
+      │
+      ▼
+Analytics
+      │
+      ▼
+History
+---
+
+# 📊 Current Implementation
+
+✔ User Authentication
+✔ Rule-based Mock Generation
+✔ Question Bank Integration
+✔ PostgreSQL Database
+✔ REST APIs
+✔ Student Attempts
+✔ Automatic Evaluation
+✔ Performance Analytics
+✔ Responsive Frontend
+
+---
+
+# 🔮 Future Improvements
+
+- AI-generated question explanations
+- Adaptive mock generation based on previous performance
+- Leaderboards
+- Personalized Suggestions
+- Bookmark questions
+- Timed sectional tests
+- Performance prediction
+
+---
+
+# 📸 Screenshots
+
+> Add screenshots here after deployment.
+
+Examples:
+
+- Login Page
+- Dashboard
+- Mock Test Interface
+- Results Page
+- Analytics Dashboard
+
+---
+
+# 🎓 Learning Outcomes
+
+Through this project, I gained hands-on experience in:
+
+- Full-stack application development
+- Backend architecture
+- Database design
+- REST API development
+- Rule-based algorithm design
+- PostgreSQL integration
+- System design
+- Performance analytics
+
+
+---
+
+# 👨‍💻 Author
+
+**Shraddha Gupta**
+
+If you have suggestions or feedback, feel free to connect or open an issue.
