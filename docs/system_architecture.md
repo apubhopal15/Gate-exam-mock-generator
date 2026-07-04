@@ -52,7 +52,7 @@ Assemble mock test
 Validate paper
 
 
-Generation engine pipi;eine (core logic)
+Generation engine pipeline (core logic)
 
 Exam Blueprint (input)
       ↓
