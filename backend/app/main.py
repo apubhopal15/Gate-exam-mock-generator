@@ -12,10 +12,23 @@ from app.database.db_connection import Session,get_db
 from typing import Literal
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from fastapi import FastAPI,Depends, Query,status,HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import random
 from datetime import UTC, datetime
 
 app=FastAPI()
+
+origins=["http://localhost:5173",]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 
 #authentication
 @app.post('/auth/register',status_code=status.HTTP_201_CREATED,response_model=schema.UserResponse)
@@ -35,7 +48,7 @@ def create_user(user: schema.UserCreate, db: Session=Depends(get_db)):
     return new_user
 
 
-@app.post('/auth/login', status_code=status.HTTP_302_FOUND)
+@app.post('/auth/login', status_code=status.HTTP_200_OK)
 def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db:Session=Depends(get_db)):
     user=db.query(User).filter(User.email==user_credentials.username).first()
     if not user:
@@ -134,6 +147,7 @@ def fetch_mock(mock_id:int, db:Session=Depends(get_db),current_user=Depends(util
             "marks":question.marks,
             "negative_marks":question.negative_marks,
             "options":[{"option_id":option.id,
+                        "option_label":option.option_label,
                         "option_text":option.option_text
                         }
                        for option in options]
@@ -173,7 +187,10 @@ def start_attempt(mock_id:int,db:Session=Depends(get_db),current_user=Depends(ut
         "duration_in_minutes":mock_test.duration_minutes
     }
 
-
+# @app.post('/attempts/{attempt_id}/answer')
+# def save_answer(attempt_id:int, data: dict):
+#     print("RAW DATA:", data)
+#     return {"ok": True}
 #save answer
 @app.post('/attempts/{attempt_id}/answer')
 def save_answer(attempt_id:int,data:schema.SaveAnswerRequest,db:Session=Depends(get_db),current_user=Depends(utils.get_current_user)):
@@ -184,16 +201,17 @@ def save_answer(attempt_id:int,data:schema.SaveAnswerRequest,db:Session=Depends(
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Not allowed")
     if attempt.status!="in_progress":
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="Attempt already submitted")
+    print(data.selected_option, type(data.selected_option))
     answer=db.query(AttemptAnswer).filter(AttemptAnswer.attempt_id==attempt_id,AttemptAnswer.question_id==data.question_id).first()
     if answer:
         answer.answer_numeric=data.answer_numeric if data.answer_numeric else None
-        answer.selected_option=(data.selected_option_ids) if data.selected_option_ids else None
+        answer.selected_option=(data.selected_option) if data.selected_option else None
     else:
         answer=AttemptAnswer(
             attempt_id=attempt_id,
             question_id=data.question_id,
             answer_numeric=data.answer_numeric if data.answer_numeric else None,
-            selected_option=(data.selected_option_ids) if data.selected_option_ids else None
+            selected_option=(data.selected_option) if data.selected_option else None
         )
         db.add(answer)
         db.flush()
@@ -264,8 +282,7 @@ def dashboard(db:Session=Depends(get_db),current_user=Depends(utils.get_current_
     return{
         "summary":{
             "total_attempts":total_attempts,
-            "completed_attempts":completed_attempts,
-            "scores":scores,
+            "completed_attempts":len(completed_attempts),
             "avg_score":avg_score,
             "best_score":best_score
         },

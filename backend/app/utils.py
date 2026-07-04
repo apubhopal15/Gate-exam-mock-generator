@@ -67,12 +67,12 @@ def check_answer(question,answer):
     if question.question_type =='MCQ':
         if answer.selected_option is None:
             return False
-        return (answer.selected_option and answer.selected_option.strip()==question.correct_option.strip())
+        return (answer.selected_option and answer.selected_option==question.correct_option)
     if question.question_type == 'MSQ':
         if answer.selected_option is None:
             return False
-        submitted = set(answer.selected_option.strip("{}").split(","))
-        correct = set(question.correct_option.strip("{}").split(","))
+        submitted = set(answer.selected_option)
+        correct = set(question.correct_option)
         return submitted == correct
     if question.question_type=='NAT':
         if answer.answer_numeric is None:

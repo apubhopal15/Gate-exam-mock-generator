@@ -1,3 +1,4 @@
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy import Column, Integer,String ,Text, Enum, ForeignKey, DECIMAL, TIMESTAMP, Index
 from sqlalchemy.sql import func
 from app.database.db_connection import Base
@@ -18,7 +19,7 @@ class Question(Base):
 
     correct_answer_value = Column(DECIMAL(10,4))
     answer_tolerance = Column(DECIMAL(10,4), default=0)
-    correct_option=Column(String)
+    correct_option=Column(ARRAY(String))
     marks = Column(DECIMAL(5, 2), nullable=False)
     negative_marks = Column(DECIMAL(5, 2), nullable=False, default=0)
     source = Column(Enum("PYQ","AI","curated", name="question_source"))

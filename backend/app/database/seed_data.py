@@ -82,13 +82,13 @@ def seed_question_bank():
 
                         db.add(question)
                         db.flush()  
-                        # flush() is important to get question.id before commit
 
                         # Insert options if MCQ/MSQ
                         if q["question_type"] in ["MCQ", "MSQ"]:
                             for opt in q.get("options", []):
                                 option = QuestionOption(
                                     question_id=question.id,
+                                    option_label=opt["option_id"],
                                     option_text=opt["text"],
                                     is_correct=opt["is_correct"]
                                 )
@@ -214,7 +214,6 @@ def seed_kb():
 
 
 if __name__ == "__main__":
-    seed_kb()
     seed_question_bank()
 
 

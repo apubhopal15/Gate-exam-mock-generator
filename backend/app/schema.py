@@ -24,7 +24,7 @@ class TokenData(BaseModel):
 
 class SaveAnswerRequest(BaseModel):
     question_id:int
-    selected_option_ids:Optional[list[str]]=None
+    selected_option:Optional[list[str]]=None
     answer_numeric:Optional[float]=None
 
 
