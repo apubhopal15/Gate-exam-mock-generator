@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GATE 2026 ECE Mock Test</title>
+<style>
+  :root {
+    --navy: #0d1b3e;
+    --gold: #f0a500;
+    --card: #ffffff;
+    --bg: #f2f3f7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    margin: 0;
+    color: #222;
+  }
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  header h1 { margin: 0; font-size: 24px; }
+  header p { margin: 5px 0 0; color: var(--gold); font-size: 14px; }
+  .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+  .card {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  .q-header { font-size: 12px; color: #888; margin-bottom: 8px; }
+  .q-text { font-size: 16px; margin-bottom: 12px; font-weight: 600; }
+  .options label {
+    display: block;
+    padding: 8px 12px;
+    margin: 6px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .options label:hover { background: #f7f7f7; }
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+  .controls { text-align: center; margin: 20px 0; }
+  button {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover { opacity: 0.9; }
+  .correct { border-color: #2e7d32 !important; background: #e8f5e9; }
+  .incorrect { border-color: #c62828 !important; background: #ffebee; }
+  .explanation {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #555;
+    background: #fafafa;
+    padding: 8px;
+    border-radius: 6px;
+  }
+  #score-banner {
+    display: none;
+    background: var(--navy);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>GATE 2026 ECE — Mock Test</h1>
+  <p>Subject-wise practice, GATE difficulty level</p>
+</header>
+
+<div class="container">
+  <div id="score-banner"></div>
+  <div id="quiz-root">Loading questions...</div>
+  <div class="controls">
+    <button id="submit-btn" onclick="gradeQuiz()">Submit Test</button>
+  </div>
+</div>
+
+<script>
+let questions = [];
+let answerKey = {};
+
+// Add more subject files to this list as batches are added
+const SUBJECTS = [
+  "engineering_mathematics",
+  "networks_signals_systems",
+  "electronic_devices",
+  "analog_circuits",
+  "digital_circuits",
+  "control_systems",
+  "communications",
+  "electromagnetics",
+  "general_aptitude"
+];
+const QUESTION_FILES = SUBJECTS.map(s => `../data/questions_${s}.json`);
+const ANSWER_FILES = SUBJECTS.map(s => `../data/answers_${s}.json`);
+
+async function loadData() {
+  for (const file of QUESTION_FILES) {
+    const res = await fetch(file);
+    const data = await res.json();
+    questions = questions.concat(data);
+  }
+  for (const file of ANSWER_FILES) {
+    const res = await fetch(file);
+    const data = await res.json();
+    answerKey = Object.assign(answerKey, data);
+  }
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const root = document.getElementById("quiz-root");
+  root.innerHTML = "";
+  questions.forEach((q, idx) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.id = "card-" + q.id;
+
+    let optionsHtml = "";
+    if (q.type === "MCQ") {
+      optionsHtml = '<div class="options">' + q.options.map((opt, i) =>
+        `<label><input type="radio" name="${q.id}" value="${opt}"> ${opt}</label>`
+      ).join("") + "</div>";
+    } else {
+      optionsHtml = `<input type="text" name="${q.id}" placeholder="Enter numerical answer">`;
+    }
+
+    card.innerHTML = `
+      <div class="q-header">Q${idx + 1} · ${q.topic} · ${q.type}</div>
+      <div class="q-text">${q.question}</div>
+      ${optionsHtml}
+      <div class="explanation" id="exp-${q.id}" style="display:none;"></div>
+    `;
+    root.appendChild(card);
+  });
+}
+
+function gradeQuiz() {
+  let score = 0;
+  questions.forEach(q => {
+    const card = document.getElementById("card-" + q.id);
+    const correct = answerKey[q.id] ? answerKey[q.id].answer.toString().trim() : null;
+    let userAnswer = null;
+
+    if (q.type === "MCQ") {
+      const checked = card.querySelector(`input[name="${q.id}"]:checked`);
+      userAnswer = checked ? checked.value.trim() : null;
+      card.querySelectorAll("label").forEach(label => {
+        label.classList.remove("correct", "incorrect");
+        const val = label.textContent.trim();
+        if (val === correct) label.classList.add("correct");
+        else if (checked && val === userAnswer) label.classList.add("incorrect");
+      });
+    } else {
+      const input = card.querySelector(`input[name="${q.id}"]`);
+      userAnswer = input.value.trim();
+      input.classList.remove("correct", "incorrect");
+      input.classList.add(userAnswer === correct ? "correct" : "incorrect");
+    }
+
+    const isCorrect = userAnswer && correct && userAnswer.toLowerCase() === correct.toLowerCase();
+    if (isCorrect) score++;
+
+    const expDiv = document.getElementById("exp-" + q.id);
+    if (answerKey[q.id]) {
+      expDiv.style.display = "block";
+      expDiv.innerHTML = `<b>Answer:</b> ${correct}` +
+        (answerKey[q.id].explanation ? `<br><b>Explanation:</b> ${answerKey[q.id].explanation}` : "");
+    }
+  });
+
+  const banner = document.getElementById("score-banner");
+  banner.style.display = "block";
+  banner.textContent = `Score: ${score} / ${questions.length}`;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+loadData();
+</script>
+
+</body>
+</html>
