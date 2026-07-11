@@ -1,0 +1,296 @@
+[
+  {
+    "id": "EM001",
+    "topic": "Linear Algebra",
+    "type": "MCQ",
+    "question": "Let A be a 4x4 real matrix with eigenvalues 1, 2, 3, and 4. If B = A^3 - 3A^2 + 2A, the trace of B is:",
+    "options": ["0", "8", "20", "-4"]
+  },
+  {
+    "id": "EM002",
+    "topic": "Linear Algebra",
+    "type": "NAT",
+    "question": "The rank of the matrix [[1,2,3],[2,4,6],[1,1,1]] is ______."
+  },
+  {
+    "id": "EM003",
+    "topic": "Linear Algebra",
+    "type": "MCQ",
+    "question": "For a 3x3 skew-symmetric real matrix A, which of the following is always true?",
+    "options": ["All eigenvalues are real", "det(A) = 0", "A is invertible", "A has three distinct eigenvalues"]
+  },
+  {
+    "id": "EM004",
+    "topic": "Linear Algebra",
+    "type": "NAT",
+    "question": "If the eigenvalues of a 2x2 matrix A are 2 and 5, then the eigenvalues of A^-1 + A are ______ and ______ (give the larger value only, rounded to two decimals)."
+  },
+  {
+    "id": "EM005",
+    "topic": "Linear Algebra",
+    "type": "MCQ",
+    "question": "A system of linear equations Ax = b, where A is 3x3, has infinitely many solutions. Which condition must hold?",
+    "options": [
+      "rank(A) = rank([A|b]) = 3",
+      "rank(A) = rank([A|b]) < 3",
+      "rank(A) < rank([A|b])",
+      "rank(A) = 3, rank([A|b]) = 2"
+    ]
+  },
+  {
+    "id": "EM006",
+    "topic": "Calculus",
+    "type": "NAT",
+    "question": "Evaluate lim(x->0) [ (e^(2x) - 1 - 2x) / x^2 ]. The value is ______."
+  },
+  {
+    "id": "EM007",
+    "topic": "Calculus",
+    "type": "MCQ",
+    "question": "The function f(x) = x^3 - 3x^2 + 3x - 1 at x = 1 has:",
+    "options": [
+      "a local maximum",
+      "a local minimum",
+      "a point of inflection with zero derivative",
+      "a discontinuity"
+    ]
+  },
+  {
+    "id": "EM008",
+    "topic": "Calculus",
+    "type": "NAT",
+    "question": "The value of the double integral of (x + y) dx dy over the region 0<=x<=1, 0<=y<=1 is ______."
+  },
+  {
+    "id": "EM009",
+    "topic": "Calculus",
+    "type": "MCQ",
+    "question": "Which of the following functions does NOT satisfy Rolle's theorem on [0, 2]?",
+    "options": ["f(x) = x(x-2)", "f(x) = sin(pi*x/2)", "f(x) = |x - 1|", "f(x) = (x-1)^2"]
+  },
+  {
+    "id": "EM010",
+    "topic": "Calculus",
+    "type": "NAT",
+    "question": "The Taylor series expansion of ln(1+x) about x = 0, up to the x^3 term, gives the coefficient of x^3 as ______ (as a fraction, enter decimal rounded to two places)."
+  },
+  {
+    "id": "EM011",
+    "topic": "Differential Equations",
+    "type": "MCQ",
+    "question": "The general solution of y'' - 4y' + 4y = 0 is:",
+    "options": [
+      "y = (C1 + C2 x) e^(2x)",
+      "y = C1 e^(2x) + C2 e^(-2x)",
+      "y = C1 cos(2x) + C2 sin(2x)",
+      "y = (C1 + C2 x) e^(-2x)"
+    ]
+  },
+  {
+    "id": "EM012",
+    "topic": "Differential Equations",
+    "type": "NAT",
+    "question": "For the initial value problem dy/dx = y/x, y(1) = 2, the value of y(e) is ______."
+  },
+  {
+    "id": "EM013",
+    "topic": "Differential Equations",
+    "type": "MCQ",
+    "question": "The differential equation (2xy + 3) dx + (x^2 - 1) dy = 0 is:",
+    "options": ["Exact", "Linear first order", "Bernoulli", "Homogeneous"]
+  },
+  {
+    "id": "EM014",
+    "topic": "Differential Equations",
+    "type": "NAT",
+    "question": "The Laplace transform based particular solution of y'' + y = sin(t), y(0)=0, y'(0)=0, evaluated at t = pi/2, is ______ (rounded to two decimals)."
+  },
+  {
+    "id": "EM015",
+    "topic": "Vector Analysis",
+    "type": "MCQ",
+    "question": "For a scalar field phi = x^2 y + y^2 z, the gradient at point (1,1,1) is:",
+    "options": ["(2, 3, 1)", "(2, 2, 1)", "(1, 3, 2)", "(2, 1, 1)"]
+  },
+  {
+    "id": "EM016",
+    "topic": "Vector Analysis",
+    "type": "NAT",
+    "question": "The divergence of the vector field F = (x^2, y^2, z^2) at point (1, 2, 3) is ______."
+  },
+  {
+    "id": "EM017",
+    "topic": "Vector Analysis",
+    "type": "MCQ",
+    "question": "Which identity correctly represents Stokes' theorem?",
+    "options": [
+      "Integral of (curl F).dS over surface S = closed line integral of F.dl over boundary of S",
+      "Integral of div F dV over volume V = closed surface integral of F.dS",
+      "Integral of curl F dV = surface integral of F",
+      "Integral of F.dl = volume integral of div F"
+    ]
+  },
+  {
+    "id": "EM018",
+    "topic": "Complex Analysis",
+    "type": "NAT",
+    "question": "The residue of f(z) = e^z / (z-1)^2 at z=1 is ______."
+  },
+  {
+    "id": "EM019",
+    "topic": "Complex Analysis",
+    "type": "MCQ",
+    "question": "A function f(z) = u + iv is analytic. Which condition must u and v satisfy?",
+    "options": [
+      "Cauchy-Riemann equations",
+      "Laplace equation only for u",
+      "u = v everywhere",
+      "u and v are both harmonic but unrelated"
+    ]
+  },
+  {
+    "id": "EM020",
+    "topic": "Complex Analysis",
+    "type": "NAT",
+    "question": "Using Cauchy's integral formula, the value of the contour integral of e^z/(z) dz around |z|=1 (counterclockwise) is 2*pi*i times ______ (give the coefficient, i.e., the value of e^0)."
+  },
+  {
+    "id": "EM021",
+    "topic": "Probability & Statistics",
+    "type": "NAT",
+    "question": "A random variable X has mean 4 and variance 9. The mean of Y = 3X - 2 is ______."
+  },
+  {
+    "id": "EM022",
+    "topic": "Probability & Statistics",
+    "type": "MCQ",
+    "question": "For a binomial distribution with n=10, p=0.5, the mode is:",
+    "options": ["5", "4", "6", "5 and 6 both"]
+  },
+  {
+    "id": "EM023",
+    "topic": "Probability & Statistics",
+    "type": "NAT",
+    "question": "Two independent random variables X and Y have variances 4 and 9 respectively. The variance of Z = 2X - Y is ______."
+  },
+  {
+    "id": "EM024",
+    "topic": "Probability & Statistics",
+    "type": "MCQ",
+    "question": "In a joint probability distribution, X and Y are independent if and only if:",
+    "options": [
+      "P(X,Y) = P(X)P(Y) for all values",
+      "Covariance(X,Y) = 0 only",
+      "Correlation coefficient is 0.5",
+      "P(X|Y) depends on Y"
+    ]
+  },
+  {
+    "id": "EM025",
+    "topic": "Probability & Statistics",
+    "type": "NAT",
+    "question": "A fair die is rolled twice. The probability that the sum is 8 is ______ (rounded to three decimals)."
+  },
+  {
+    "id": "EM026",
+    "topic": "Linear Algebra",
+    "type": "NAT",
+    "question": "The determinant of a 3x3 orthogonal matrix with det = -1 represents a: (enter 1 for 'reflection', 2 for 'pure rotation')"
+  },
+  {
+    "id": "EM027",
+    "topic": "Linear Algebra",
+    "type": "MCQ",
+    "question": "A matrix A satisfies A^2 = A (idempotent). Which of the following about its eigenvalues is true?",
+    "options": [
+      "Eigenvalues are only 0 or 1",
+      "Eigenvalues are only 1",
+      "Eigenvalues are only -1 or 1",
+      "Eigenvalues can be any real number"
+    ]
+  },
+  {
+    "id": "EM028",
+    "topic": "Calculus",
+    "type": "NAT",
+    "question": "The radius of convergence of the power series sum(n=0 to inf) of x^n / n! is ______ (enter a large number or 'infinity' as 999)."
+  },
+  {
+    "id": "EM029",
+    "topic": "Differential Equations",
+    "type": "MCQ",
+    "question": "The partial differential equation d^2u/dt^2 = c^2 (d^2u/dx^2) represents:",
+    "options": ["Wave equation", "Heat equation", "Laplace equation", "Poisson equation"]
+  },
+  {
+    "id": "EM030",
+    "topic": "Vector Analysis",
+    "type": "NAT",
+    "question": "For F = curl(G) for some vector field G, the divergence of F is always ______."
+  },
+  {
+    "id": "EM031",
+    "topic": "Complex Analysis",
+    "type": "MCQ",
+    "question": "The function f(z) = 1/z has a singularity at z = 0 of type:",
+    "options": ["Simple pole", "Essential singularity", "Removable singularity", "Branch point only"]
+  },
+  {
+    "id": "EM032",
+    "topic": "Probability & Statistics",
+    "type": "NAT",
+    "question": "For a Poisson distribution with mean lambda = 4, P(X=0) is ______ (rounded to four decimals, using e^-4 ≈ 0.0183)."
+  },
+  {
+    "id": "EM033",
+    "topic": "Linear Algebra",
+    "type": "MCQ",
+    "question": "If A is a 3x3 matrix with det(A) = 5, then det(2A) is:",
+    "options": ["40", "10", "20", "80"]
+  },
+  {
+    "id": "EM034",
+    "topic": "Calculus",
+    "type": "NAT",
+    "question": "Evaluate the definite integral of x*e^(-x) dx from 0 to infinity. The value is ______."
+  },
+  {
+    "id": "EM035",
+    "topic": "Differential Equations",
+    "type": "NAT",
+    "question": "The integrating factor for dy/dx + (1/x)y = x^2 (x>0) is x. Using this, y(1) if y satisfies y(1)=1 and the general solution y = x^3/4 + C/x, find C rounded to two decimals."
+  },
+  {
+    "id": "EM036",
+    "topic": "Vector Analysis",
+    "type": "MCQ",
+    "question": "The Laplacian of a scalar function phi is defined as:",
+    "options": ["div(grad phi)", "curl(grad phi)", "grad(div phi)", "curl(curl phi)"]
+  },
+  {
+    "id": "EM037",
+    "topic": "Complex Analysis",
+    "type": "NAT",
+    "question": "The number of poles (counted with multiplicity) of f(z) = (z^2+1)/(z-1)^3 inside |z|=2 is ______."
+  },
+  {
+    "id": "EM038",
+    "topic": "Probability & Statistics",
+    "type": "MCQ",
+    "question": "The central limit theorem states that the distribution of the sample mean, for large n, approaches:",
+    "options": ["Normal distribution", "Binomial distribution", "Poisson distribution", "Uniform distribution"]
+  },
+  {
+    "id": "EM039",
+    "topic": "Linear Algebra",
+    "type": "NAT",
+    "question": "The sum of eigenvalues of a matrix A equals the trace. If A is 3x3 with trace 12 and two eigenvalues are 3 and 4, the third eigenvalue is ______."
+  },
+  {
+    "id": "EM040",
+    "topic": "Calculus",
+    "type": "MCQ",
+    "question": "Which test is most appropriate to check convergence of the series sum (1/n^2)?",
+    "options": ["p-series test (p=2>1, converges)", "Ratio test only", "Root test only", "Comparison with harmonic series (diverges)"]
+  }
+]
