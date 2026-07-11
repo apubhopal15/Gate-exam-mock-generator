@@ -33,6 +33,8 @@
   .self-table th, .self-table td { border: 1px solid #d9dde8; padding: 8px; vertical-align: top; }
   .self-table th { background: #eef2f8; }
   textarea.self-note, select.confidence { width: 100%; border: 1px solid #d7dce8; border-radius: 5px; padding: 6px; }
+  .paper-images { display: grid; gap: 16px; }
+  .paper-images img { width: 100%; border: 1px solid #cfd6e3; border-radius: 8px; background: white; }
   .page-break { display: none; }
   @media print {
     body { background: white; }
@@ -53,9 +55,11 @@
     <button onclick="showFourPageBook()">4 Page Book View</button>
     <button onclick="window.print()">Print / Save PDF</button>
     <button onclick="toggleSelfCheck()">Self Check Sheet</button>
+    <button onclick="togglePaperScreenshots()">Screenshot Paper</button>
   </div>
   <div class="card" id="analysis-panel"></div>
   <div class="card" id="self-check-panel"></div>
+  <div class="card" id="paper-screenshot-panel" style="display:none;"></div>
   <div id="quiz-root">Loading questions...</div>
   <div class="controls"><button id="submit-btn" onclick="gradeQuiz()">Submit Test</button></div>
 </div>
@@ -117,6 +121,15 @@ function renderSelfCheck(afterSubmit) {
   const source = afterSubmit && lastReport.length ? lastReport : questions.map(q => ({ id: q.id, topic: q.topic, type: q.type, userAnswer: "", correct: "", isCorrect: false, confidence: "", note: "" }));
   panel.innerHTML = `<h2>Student Self Check Sheet</h2><p>Fill confidence and notes for each question. After submit, this sheet matches your answer with the key and shows what to revise.</p><table class="self-table"><thead><tr><th>Q</th><th>Topic</th><th>Your answer</th><th>Correct answer</th><th>Confidence</th><th>Self note</th><th>Status</th></tr></thead><tbody>${source.map((r, idx) => `<tr><td>${idx + 1}</td><td>${escapeHtml(r.topic)}</td><td>${escapeHtml(r.userAnswer || "-")}</td><td>${escapeHtml(r.correct || "After submit")}</td><td><select class="confidence" id="confidence-${r.id}"><option value="">Select</option><option value="high" ${r.confidence === "high" ? "selected" : ""}>Sure</option><option value="medium" ${r.confidence === "medium" ? "selected" : ""}>Half sure</option><option value="low" ${r.confidence === "low" ? "selected" : ""}>Guess</option></select></td><td><textarea class="self-note" id="note-${r.id}" rows="2" placeholder="Formula, concept, mistake">${escapeHtml(r.note || "")}</textarea></td><td>${afterSubmit ? (r.isCorrect ? "Correct" : "Review") : "Pending"}</td></tr>`).join("")}</tbody></table>`;
 }
+
+function togglePaperScreenshots() {
+  const panel = document.getElementById("paper-screenshot-panel");
+  if (panel.style.display === "block") { panel.style.display = "none"; return; }
+  const prefix = location.pathname.includes("/docs/") ? "assets/question-paper/" : "docs/assets/question-paper/";
+  panel.style.display = "block";
+  panel.innerHTML = `<h2>Digital Circuits Screenshot Question Paper</h2><p>These are actual image pages for the Digital Circuits paper. Use this when formulas, drawing-style layout, or figure presentation is easier to read as an image.</p><div class="paper-images">${[1,2,3,4].map(n => `<img src="${prefix}digital-circuits-question-paper-page-${n}.png" alt="Digital Circuits question paper page ${n}">`).join("")}</div>`;
+}
+
 function showFourPageBook() {
   const root = document.getElementById("quiz-root"); root.querySelectorAll(".page-break").forEach(el => el.remove()); const cards = [...root.querySelectorAll(".card")]; const pageSize = Math.ceil(cards.length / 4);
   cards.forEach((card, idx) => { if ((idx + 1) % pageSize === 0 && idx < cards.length - 1) card.insertAdjacentHTML("afterend", '<div class="page-break"></div>'); });
